@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import ru.practicum.pages.MainPage;
+import ru.practicum.pages.MainPageSectionQuestions;
 import ru.practicum.util.Constants;
 
 @RunWith(Parameterized.class)
@@ -21,7 +21,7 @@ public class FAQTest {
         this.textAnswer = textAnswer;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные {index}: {0} {1}" )
     public static Object[][] getQuestionsData() {
         return new Object[][] {
                 { 0, Constants.ANSWER_PAYMENT},
@@ -38,12 +38,12 @@ public class FAQTest {
     @Test
     public void checkFAQCorrectAnswers() throws InterruptedException {
         WebDriver driver = driverFactory.getDriver();
-        MainPage mainPageObj = new MainPage(driver);
-        mainPageObj.openMainPage();
-        mainPageObj.waitForLoadScooterImage();
-        mainPageObj.clickCookieButton();
-        mainPageObj.scrollToFAQSection();
-        mainPageObj.checkCorrectAnswer(questionNum, textAnswer);
+        MainPageSectionQuestions mainPageSectionQuestionsObj = new MainPageSectionQuestions(driver, questionNum);
+        mainPageSectionQuestionsObj.openMainPage();
+        mainPageSectionQuestionsObj.waitForLoadScooterImage();
+        mainPageSectionQuestionsObj.clickCookieButton();
+        mainPageSectionQuestionsObj.scrollToFAQSection();
+        mainPageSectionQuestionsObj.checkCorrectAnswer(textAnswer);
     }
 
 }

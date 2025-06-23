@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.practicum.util.Constants;
-
 import java.time.Duration;
 
 //класс страницы оформления заказа Для кого
@@ -71,3 +70,4 @@ public class OrderFormForWhomPage {
         new WebDriverWait(driver, Duration.ofSeconds(Constants.WAITING_SECONDS)).until(ExpectedConditions.visibilityOf(driver.findElement(userForm)));
     }
 }
+

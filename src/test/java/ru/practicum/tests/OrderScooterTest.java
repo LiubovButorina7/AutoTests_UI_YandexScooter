@@ -40,7 +40,7 @@ public class OrderScooterTest {
         this.comment = comment;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные {index}: {0} {1} {2} {3} {4} {5} {6} {7} {8} {9}")
     public static Object[][] getOrderData() {
         return new Object[][] {
                 {Constants.BUTTON1, Constants.NAME1, Constants.SURNAME1, Constants.ADDRESS1, Constants.STATION1, Constants.PHONE1, Constants.DELIVERY_DATE1, Constants.RENTAL_DURATION1, Constants.SCOOTER_COLOR1, Constants.COMMENT1},
@@ -49,7 +49,7 @@ public class OrderScooterTest {
     }
 
     @Test
-    public void makeOrderWithCorrectData() throws InterruptedException {
+    public void makeOrderWithCorrectDataTest() throws InterruptedException {
         WebDriver driver = driverFactory.getDriver();
 
         MainPage mainPageObj = new MainPage(driver);
@@ -60,12 +60,13 @@ public class OrderScooterTest {
         OrderFormForWhomPage forWhomObj = new OrderFormForWhomPage(driver);
         forWhomObj.waitForLoadOrderUserForm();
         forWhomObj.enterPersonalData(username, surname, address, station, phone);
-        OrderFormAboutRentPage aboutRentObj = new OrderFormAboutRentPage(driver);
+        OrderFormAboutRentPage aboutRentObj = new OrderFormAboutRentPage(driver, rentalDays, color);
         aboutRentObj.waitForLoadHeadingAboutRent();
-        aboutRentObj.enterRentalData(deliveryDate, rentalDays, color, comment);
+        aboutRentObj.enterRentalData(deliveryDate, comment);
         ModalWindowPage modalWindowObj = new ModalWindowPage(driver);
         modalWindowObj.clickYesButton();
         modalWindowObj.waitForLoadMessage();
         modalWindowObj.checkOrderMessage();
     }
 }
+
