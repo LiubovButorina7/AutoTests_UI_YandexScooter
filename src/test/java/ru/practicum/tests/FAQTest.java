@@ -36,7 +36,7 @@ public class FAQTest {
     }
 
     @Test
-    public void checkFAQCorrectAnswers() throws InterruptedException {
+    public void checkFAQCorrectAnswersTest() throws InterruptedException {
         WebDriver driver = driverFactory.getDriver();
         MainPageSectionQuestions mainPageSectionQuestionsObj = new MainPageSectionQuestions(driver, questionNum);
         mainPageSectionQuestionsObj.openMainPage();
